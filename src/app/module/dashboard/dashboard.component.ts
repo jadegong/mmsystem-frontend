@@ -8,30 +8,22 @@ import {Router} from "@angular/router";
   // The selector is what angular internally uses
   // for `document.querySelectorAll(selector)` in our index.html
   // where, in this case, selector is the string 'home'
-  selector: 'login',  // <login></login>
+  selector: 'dashboard',  // <dashboard></dashboard>
   // Our list of styles in our component. We may add more to compose many styles together
-  styleUrls: [ './login.css' ],
+  // styleUrls: [ './dashboard.css' ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  templateUrl: './login.html'
+  templateUrl: './dashboard.html'
 })
-export class LoginComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   // Set our default values
-  public userData = {
-    username: null,
-    password: null
-  };
+  // public userData = {
+  //   username: null,
+  //   password: null
+  // };
   // TypeScript public modifiers
-  constructor(
-    private router: Router
-  ) {}
+  constructor() {}
 
   public ngOnInit() {
-    console.log('hello `Login` component');
-    // this.title.getData().subscribe(data => this.data = data);
-  }
-
-  public submitLogin() {
-    console.log('UserData:\n', this.userData);
-    this.router.navigate(['/module']);
+    console.log('hello `Dashboard` component');
   }
 }
