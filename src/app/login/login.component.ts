@@ -32,6 +32,6 @@ export class LoginComponent implements OnInit {
 
   public submitLogin() {
     console.log('UserData:\n', this.userData);
-    this.router.navigate(['/module']);
+    this.router.navigate(['/module/dashboard']);
   }
 }
