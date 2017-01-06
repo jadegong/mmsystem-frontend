@@ -1,11 +1,11 @@
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login';
-import { NoContentComponent } from './no-content';
+import { Routes } from '@angular/router';
+import {NoContentComponent} from "./no-content";
+import {Ng2StateDeclaration} from "ui-router-ng2";
+import {LoginComponent} from "./login";
 
 export const ROUTES: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'module', loadChildren: './module/index#ModuleModule' },
-  // { path: 'detail', loadChildren: './detail/index#DetailModule'},
-  { path: '**', component: NoContentComponent },
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  // {path: 'module', loadChildren: './module/index#ModuleModule', canActivate: [AuthGuard]},
+  {path: '**', component: NoContentComponent}
 ];

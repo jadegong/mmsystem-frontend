@@ -6,6 +6,7 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
+import {Router, NavigationStart} from "@angular/router";
 import { AppState } from './app.service';
 
 /*
@@ -26,7 +27,8 @@ export class AppComponent implements OnInit {
   public url = 'https://github.com/jadegong';
 
   constructor(
-    public appState: AppState
+    public appState: AppState,
+    public router: Router,
   ) {}
 
   public ngOnInit() {

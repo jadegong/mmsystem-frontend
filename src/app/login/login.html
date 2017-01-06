@@ -1,8 +1,9 @@
 <div>
-    <form (ngSubmit)="submitLogin()" autocomplete="off">
+    <p>{{message}}</p>
+    <form (ngSubmit)="login()" autocomplete="off">
         <input
-            [value]="userData.username"
-            (input)="userData.username = $event.target.value"
+            [value]="userData.name"
+            (input)="userData.name = $event.target.value"
             placeholder="请输入用户名"
             type="text">
         <input

@@ -27,6 +27,9 @@ import { AppState, InternalStateType } from './app.service';
 import { LoginComponent } from './login';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
+import {AuthenticationService} from "./components/services/authentication.service";
+import {AuthGuard} from "./components/services/auth-guard.service";
+import {ModuleModule} from "./module/index";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -52,6 +55,7 @@ type StoreType = {
     XLargeDirective
   ],
   imports: [ // import Angular's module
+    ModuleModule,
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -59,7 +63,9 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    AuthenticationService,
+    AuthGuard
   ]
 })
 export class AppModule {

@@ -1,8 +1,9 @@
 import {
   Component,
   OnInit,
-  ViewEncapsulation,
 } from '@angular/core';
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../components/services/authentication.service";
 /*
  * We're loading this component asynchronously
  * We are using some magic with es6-promise-loader that will wrap the module with a Promise
@@ -11,12 +12,17 @@ import {
 
 @Component({
   selector: 'module',
-  encapsulation: ViewEncapsulation.None,
   templateUrl: 'module.html',
 })
 export class ModuleComponent implements OnInit {
 
+  constructor(
+    private router: Router,
+    private auth: AuthenticationService
+  ) {}
+
   public ngOnInit() {
-    console.log('hello `Module` component');
+    console.dir(this.auth.user);
+    this.router.navigate(['/module/dashboard']);
   }
 }

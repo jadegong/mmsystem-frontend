@@ -3,6 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import {Router} from "@angular/router";
+import {AuthenticationService} from "../components/services/authentication.service";
 
 @Component({
   // The selector is what angular internally uses
@@ -17,21 +18,38 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   // Set our default values
   public userData = {
-    username: null,
-    password: null
+    name: null,
+    password: null,
+    role: 1
   };
+
+  message: string;
+
   // TypeScript public modifiers
   constructor(
-    private router: Router
-  ) {}
+    public router: Router,
+    public auth: AuthenticationService,
+  ) {
+    this.setMessage();
+  }
+
+  setMessage(...msg) {
+    if (msg) {
+      this.message = msg[0];
+      return;
+    }
+    this.message = 'Logged ' + (this.auth.user.name ? 'in' : 'out');
+  }
+
+  public login() {
+    console.log('UserData: ', this.userData);
+    this.setMessage('Trying to login');
+    this.auth.fill = this.userData;
+    this.router.navigate(['/module/dashboard']);
+  }
 
   public ngOnInit() {
     console.log('hello `Login` component');
     // this.title.getData().subscribe(data => this.data = data);
-  }
-
-  public submitLogin() {
-    console.log('UserData:\n', this.userData);
-    this.router.navigate(['/module/dashboard']);
   }
 }
