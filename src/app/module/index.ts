@@ -5,12 +5,14 @@ import { DashboardComponent } from './dashboard'
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { ModuleRoutes } from './module.routes';
+import {AccountComponent} from "./account";
 
 @NgModule({
   declarations: [
     // Components / Directives/ Pipes
     ModuleComponent,
-    DashboardComponent
+    DashboardComponent,
+    AccountComponent,
   ],
   imports: [
     CommonModule,

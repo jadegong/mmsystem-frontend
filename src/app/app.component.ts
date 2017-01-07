@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import {Router, NavigationStart} from "@angular/router";
+import {Router} from "@angular/router";
 import { AppState } from './app.service';
 
 /*

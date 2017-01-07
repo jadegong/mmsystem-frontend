@@ -23,6 +23,5 @@ export class ModuleComponent implements OnInit {
 
   public ngOnInit() {
     console.dir(this.auth.user);
-    this.router.navigate(['/module/dashboard']);
   }
 }
