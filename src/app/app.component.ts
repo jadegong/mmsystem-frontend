@@ -17,9 +17,10 @@ import { AppState } from './app.service';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './app.component.css'
+    '../../node_modules/bootstrap/dist/css/bootstrap.css',
+    './app.css',
   ],
-  templateUrl: 'app.html'
+  template: '<router-outlet></router-outlet>'
 })
 export class AppComponent implements OnInit {
   // public angularclassLogo = 'assets/img/angularclass-avatar.png';

@@ -1,0 +1,39 @@
+.login-container {
+    height: 100%;
+    width: 100%;
+    background: #3498db;
+    position: absolute;
+}
+.login-content {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    margin: -160px auto 0;
+    top: 50%;
+    /*margin-top: -50%;*/
+}
+.login-content .login-content-title {
+    margin-bottom: 15px;
+    text-align: center;
+}
+@media (min-width: 768px) {
+    .login-content {
+        right: 320px;
+        margin: -160px 0 0;
+    }
+    .login-content .login-content-title {
+        text-align: left;
+    }
+    .form-group {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .col-xs-9, .col-sm-9 {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+.form-group {
+    margin-left: 0;
+    margin-right: 0;
+}

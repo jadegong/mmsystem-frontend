@@ -30,6 +30,8 @@ import { XLargeDirective } from './home/x-large';
 import {AuthenticationService} from "./components/services/authentication.service";
 import {AuthGuard} from "./components/services/auth-guard.service";
 import {ModuleModule} from "./module/index";
+import {LockerModule, LockerConfig, DRIVERS} from "angular2-locker";
+import {AppConstants} from "./app.constants";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -39,9 +41,11 @@ const APP_PROVIDERS = [
 
 type StoreType = {
   state: InternalStateType,
-  restoreInputValues: () => void,
+  // restoreInputValues: () => void,
   disposeOldHosts: () => void
 };
+
+const lockerConfig = new LockerConfig('mmsystem', DRIVERS.SESSION, '-');
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -59,13 +63,15 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    LockerModule.forRoot(lockerConfig),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
     AuthenticationService,
-    AuthGuard
+    AuthGuard,
+    AppConstants
   ]
 })
 export class AppModule {
@@ -83,14 +89,14 @@ export class AppModule {
     // set state
     this.appState._state = store.state;
     // set input values
-    if ('restoreInputValues' in store) {
-      let restoreInputValues = store.restoreInputValues;
-      setTimeout(restoreInputValues);
-    }
+    // if ('restoreInputValues' in store) {
+    //   let restoreInputValues = store.restoreInputValues;
+    //   setTimeout(restoreInputValues);
+    // }
 
     this.appRef.tick();
     delete store.state;
-    delete store.restoreInputValues;
+    // delete store.restoreInputValues;
   }
 
   public hmrOnDestroy(store: StoreType) {
@@ -101,7 +107,7 @@ export class AppModule {
     // recreate root elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
     // save input values
-    store.restoreInputValues  = createInputTransfer();
+    // store.restoreInputValues  = createInputTransfer();
     // remove styles
     removeNgStyles();
   }

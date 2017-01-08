@@ -1,16 +1,35 @@
-<div>
-    <p>{{message}}</p>
-    <form (ngSubmit)="login()" autocomplete="off">
-        <input
-            [value]="userData.name"
-            (input)="userData.name = $event.target.value"
-            placeholder="请输入用户名"
-            type="text">
-        <input
-            [value]="userData.password"
-            (input)="userData.password = $event.target.value"
-            placeholder="请输入密码"
-            type="password">
-        <button type="submit">Login</button>
-    </form>
+<div class="login-container">
+    <div class="login-content">
+        <h2 class="login-content-title">材料数据管理系统</h2>
+        <form class="form form-horizontal" #loginForm="ngForm">
+            <div [ngClass]="{'form-group': true, 'has-error': loginEmail.dirty && loginEmail.errors, 'has-success': loginEmail.dirty && loginEmail.valid}">
+                <label for="loginEmail" class="control-label col-xs-3 col-sm-3">邮箱：</label>
+                <div class="col-xs-9 col-sm-9">
+                    <input type="email" id="loginEmail" name="loginEmail" class="form-control" placeholder="请输入用户名"
+                           [(ngModel)]="userData.email"
+                           required
+                           #loginEmail="ngModel" [pattern]="EMAIL_PATTERN">
+                    <div *ngIf="loginEmail.dirty && loginEmail.errors">
+                        <div *ngIf="loginEmail.errors.required" class="help-block text-right">输入不能为空！</div>
+                        <div *ngIf="loginEmail.errors.pattern" class="help-block text-right">输入格式不正确！</div>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="{'form-group': true, 'has-error': loginPwd.dirty && loginPwd.errors, 'has-success': loginPwd.dirty && loginPwd.valid}">
+                <label for="loginPwd" class="control-label col-xs-3 col-sm-3">密码：</label>
+                <div class="col-xs-9 col-sm-9">
+                    <input type="password" id="loginPwd" name="loginPwd" class="form-control" placeholder="请输入密码"
+                           [(ngModel)]="userData.password"
+                           required
+                           #loginPwd="ngModel">
+                    <div *ngIf="loginPwd.dirty && loginPwd.errors">
+                        <div *ngIf="loginPwd.errors.required" class="help-block text-right">输入不能为空！</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-success col-xs-12 col-sm-12" (click)="login()" [disabled]="!loginForm.form.valid">登录</button>
+            </div>
+        </form>
+    </div>
 </div>

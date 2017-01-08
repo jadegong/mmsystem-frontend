@@ -1,8 +1,10 @@
 <div>
-    module
     <nav>
         <a [routerLink]=" ['./dashboard'] ">Dashboard</a>
         <a [routerLink]=" ['./account'] ">Account</a>
     </nav>
-    <router-outlet></router-outlet>
+    <div class="main-content-container">
+        <button type="button" class="btn btn-danger" (click)="logout()">logout</button>
+        <router-outlet></router-outlet>
+    </div>
 </div>

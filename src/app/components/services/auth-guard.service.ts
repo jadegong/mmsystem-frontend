@@ -1,12 +1,14 @@
 import {Injectable} from "@angular/core";
 import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild} from "@angular/router";
 import {AuthenticationService} from "./authentication.service";
+import {Locker} from "angular2-locker";
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(
     private auth: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private locker: Locker,
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
@@ -23,7 +25,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   }
 
   checkAuth(): boolean {
-    if (this.auth.user.name) return true;
+    let token = this.locker.get('token');
+    console.log(token);
+    if (token) return true;
 
     this.router.navigate(['/login']);
     return false;

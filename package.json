@@ -1,14 +1,14 @@
 {
-  "name": "angular2-webpack-starter",
-  "version": "5.4.1",
-  "description": "An Angular 2 Webpack Starter kit featuring Angular 2 (Router, Http, Forms, Services, Tests, E2E, Coverage), Karma, Protractor, Jasmine, Istanbul, TypeScript, and Webpack by AngularClass",
+  "name": "frontend.mmsystem.com",
+  "version": "0.0.1",
+  "description": "Material Management System",
   "keywords": [
-    "angular2",
-    "webpack",
-    "typescript"
+    "材料管理",
+    "Angular2",
+    "Jade Gong"
   ],
-  "author": "Patrick Stapleton <patrick@angularclass.com>",
-  "homepage": "https://github.com/angularclass/angular2-webpack-starter",
+  "author": "Jade Gong <jadegong@sina.cn>",
+  "homepage": "https://github.com/jadegong/frontend.mmsystem.com",
   "license": "MIT",
   "scripts": {
     "build:aot:prod": "npm run clean:dist && npm run clean:aot && npm run ngc -- --webpack config/webpack.prod.js && webpack --config config/webpack.prod.js  --progress --profile --bail",
@@ -81,10 +81,13 @@
     "@angularclass/conventions-loader": "^1.0.2",
     "@angularclass/hmr": "~1.2.2",
     "@angularclass/hmr-loader": "~3.0.2",
+    "angular2-locker": "^0.5.0",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
     "jasmine-core": "^2.5.2",
+    "ng2-bootstrap": "^1.1.16-11",
     "reflect-metadata": "^0.1.9",
     "rxjs": "~5.0.2",
     "zone.js": "~0.7.4"
@@ -148,10 +151,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/angularclass/angular2-webpack-starter.git"
+    "url": "https://github.com/jadegong/frontend.mmsystem.com.git"
   },
   "bugs": {
-    "url": "https://github.com/angularclass/angular2-webpack-starter/issues"
+    "url": "https://github.com/jadegong/frontend.mmsystem.com/issues"
   },
   "engines": {
     "node": ">= 4.2.1",
