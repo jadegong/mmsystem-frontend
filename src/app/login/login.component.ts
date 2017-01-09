@@ -3,19 +3,18 @@ import {
   OnInit
 } from '@angular/core';
 import {Router} from "@angular/router";
-import {AuthenticationService} from "../components/services/authentication.service";
 import {Locker} from "angular2-locker";
+import {ToastOptions} from "ng2-toasty";
+
+import {AuthenticationService} from "../components/services/authentication.service";
 import { AppConstants } from '../app.constants';
+import {CustomToastyService} from "../components/services/custom-toasty.service";
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
   selector: 'login',  // <login></login>
-  // Our list of styles in our component. We may add more to compose many styles together
-  styleUrls: [ './login.css' ],
+  styleUrls: [ '../partials/log-reg.css' ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  templateUrl: './login.html'
+  templateUrl: '../partials/log-reg.html'
 })
 export class LoginComponent implements OnInit {
   // Set our default values
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit {
     role: 1
   };
 
-  message: string;
+  formType: string = 'login';
   EMAIL_PATTERN: string;
 
   // TypeScript public modifiers
@@ -35,25 +34,18 @@ export class LoginComponent implements OnInit {
     private auth: AuthenticationService,
     private locker: Locker,
     private appConstants: AppConstants,
+    private customToastyService: CustomToastyService,
   ) {
     this.EMAIL_PATTERN = '^' + appConstants.pattern.email + '$';
-    this.setMessage();
-  }
-
-  setMessage(...msg) {
-    if (msg) {
-      this.message = msg[0];
-      return;
-    }
-    this.message = 'Logged ' + (this.auth.user.name ? 'in' : 'out');
   }
 
   public login() {
-    console.log('UserData: ', this.userData);
-    this.setMessage('Trying to login');
+    console.log('Login UserData: ', this.userData);
     this.auth.fill = this.userData;
     this.locker.set('user', this.userData);
     this.locker.set('token', this.userData.email);
+    // let toastOptions: ToastOptions = {title: 'Login info'};
+    // this.customToastyService.show('default', toastOptions);
     this.router.navigate(['/module/dashboard']);
   }
 

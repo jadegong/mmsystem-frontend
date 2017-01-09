@@ -163,6 +163,12 @@ module.exports = function (options) {
         prettyPrint: true
       }),
 
+      new webpack.ProvidePlugin({
+        jQuery: 'jquery',
+        jquery: 'jquery',
+        $: 'jquery'
+      }),
+
       /*
        * Plugin: ForkCheckerPlugin
        * Description: Do type checking in a separate process, so webpack don't need to wait.

@@ -87,7 +87,9 @@
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
     "jasmine-core": "^2.5.2",
+    "jquery": "^3.1.1",
     "ng2-bootstrap": "^1.1.16-11",
+    "ng2-toasty": "^2.2.2",
     "reflect-metadata": "^0.1.9",
     "rxjs": "~5.0.2",
     "zone.js": "~0.7.4"
@@ -96,6 +98,7 @@
     "@angular/compiler-cli": "~2.4.1",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "^2.2.34",
+    "@types/jquery": "^2.0.39",
     "@types/node": "^6.0.38",
     "@types/selenium-webdriver": "2.53.38",
     "@types/source-map": "^0.5.0",

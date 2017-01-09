@@ -7,7 +7,10 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {Router} from "@angular/router";
+import {ToastOptions} from "ng2-toasty";
+
 import { AppState } from './app.service';
+import {CustomToastyService} from "./components/services/custom-toasty.service";
 
 /*
  * App Component
@@ -17,10 +20,14 @@ import { AppState } from './app.service';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    '../../node_modules/bootstrap/dist/css/bootstrap.css',
-    './app.css',
+    '../../node_modules/bootstrap/dist/css/bootstrap.css', //bootstrap styles
+    '../../node_modules/ng2-toasty/style-default.css', //ng2-toasty default theme styles
+    './app.css', //self defined global styles
   ],
-  template: '<router-outlet></router-outlet>'
+  template: `
+    <router-outlet></router-outlet>
+    <ng2-toasty [position]="'top-right'"></ng2-toasty>
+  `
 })
 export class AppComponent implements OnInit {
   // public angularclassLogo = 'assets/img/angularclass-avatar.png';
@@ -30,9 +37,13 @@ export class AppComponent implements OnInit {
   constructor(
     public appState: AppState,
     public router: Router,
+    private toastyService: CustomToastyService,
+    private toastOptions: ToastOptions,
   ) {}
 
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);
+    this.toastOptions = {title: 'Test Toasty'};
+    this.toastyService.show('default', this.toastOptions);
   }
 }

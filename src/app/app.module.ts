@@ -8,7 +8,7 @@ import {
 import {
   removeNgStyles,
   createNewHosts,
-  createInputTransfer
+  // createInputTransfer
 } from '@angularclass/hmr';
 import {
   RouterModule,
@@ -20,18 +20,22 @@ import {
  */
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
+import {LockerModule, LockerConfig, DRIVERS} from "angular2-locker";
+import {ToastyModule, ToastOptions} from "ng2-toasty";
+
 // App is our top level component
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { LoginComponent } from './login';
+import { RegisterComponent } from './register';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
 import {AuthenticationService} from "./components/services/authentication.service";
 import {AuthGuard} from "./components/services/auth-guard.service";
 import {ModuleModule} from "./module/index";
-import {LockerModule, LockerConfig, DRIVERS} from "angular2-locker";
 import {AppConstants} from "./app.constants";
+import {CustomToastyService} from "./components/services/custom-toasty.service";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -45,7 +49,7 @@ type StoreType = {
   disposeOldHosts: () => void
 };
 
-const lockerConfig = new LockerConfig('mmsystem', DRIVERS.SESSION, '-');
+const lockerConfig = new LockerConfig('mm-system', DRIVERS.SESSION, '-');
 
 /**
  * `AppModule` is the main entry point into Angular2's bootstraping process
@@ -55,6 +59,7 @@ const lockerConfig = new LockerConfig('mmsystem', DRIVERS.SESSION, '-');
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     NoContentComponent,
     XLargeDirective
   ],
@@ -64,6 +69,7 @@ const lockerConfig = new LockerConfig('mmsystem', DRIVERS.SESSION, '-');
     FormsModule,
     HttpModule,
     LockerModule.forRoot(lockerConfig),
+    ToastyModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
@@ -71,7 +77,9 @@ const lockerConfig = new LockerConfig('mmsystem', DRIVERS.SESSION, '-');
     APP_PROVIDERS,
     AuthenticationService,
     AuthGuard,
-    AppConstants
+    AppConstants,
+    ToastOptions,
+    CustomToastyService,
   ]
 })
 export class AppModule {
