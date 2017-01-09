@@ -143,7 +143,7 @@ module.exports = function (options) {
         /* File loader for supporting images and fonts, for example, in CSS files.
          */
         {
-          test: /\.(jpg|png|gif|eot|woff2|woff|ttf|svg)$/,
+          test: /\.(ico|jpg|png|gif|eot|woff2|woff|ttf|svg)$/,
           use: 'file-loader'
         },
 

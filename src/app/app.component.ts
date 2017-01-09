@@ -21,6 +21,7 @@ import {CustomToastyService} from "./components/services/custom-toasty.service";
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     '../../node_modules/bootstrap/dist/css/bootstrap.css', //bootstrap styles
+    '../../node_modules/font-awesome/css/font-awesome.css',
     '../../node_modules/ng2-toasty/style-default.css', //ng2-toasty default theme styles
     './app.css', //self defined global styles
   ],

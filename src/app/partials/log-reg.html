@@ -27,6 +27,31 @@
                     </div>
                 </div>
             </div>
+            <div *ngIf="formType === 'register'" class="form-group">
+                <label class="control-label col-xs-3 col-sm-3">角色：</label>
+                <div class="col-xs-9 col-sm-9 remove-padding">
+                    <div class="col-xs-6 col-sm-6 form-role-block">
+                        <input type="radio" name="formRole"
+                               [(ngModel)]="userData.role"
+                               required
+                               [value]="1"
+                               title="普通用户"
+                               #formRole="ngModel">
+                        <i [ngClass]="{'fa font-s18': true, 'fa-check-circle text-success': userData.role === 1, 'fa-circle-thin': userData.role !== 1}"></i>
+                        <span class="form-role-description">普通用户</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 form-role-block">
+                        <input type="radio" name="formRole"
+                               [(ngModel)]="userData.role"
+                               required
+                               [value]="2"
+                               title="管理员"
+                               #formRole="ngModel">
+                        <i [ngClass]="{'fa font-s18': true, 'fa-check-circle text-success': userData.role === 2, 'fa-circle-thin': userData.role !== 2}"></i>
+                        <span class="form-role-description">管理员</span>
+                    </div>
+                </div>
+            </div>
             <div *ngIf="formType === 'login'" class="form-group">
                 <button type="button" class="btn btn-success col-xs-9 col-sm-9" (click)="login()" [disabled]="!logRegForm.form.valid">登录</button>
                 <a class="btn btn-link col-xs-3 col-sm-3" [routerLink]=" ['../register'] ">去注册</a>
