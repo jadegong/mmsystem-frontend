@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import {LockerModule, LockerConfig, DRIVERS} from "angular2-locker";
+import {ToastyModule, ToastOptions} from "ng2-toasty";
 import {
   NgModule,
   ApplicationRef
@@ -20,8 +22,6 @@ import {
  */
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
-import {LockerModule, LockerConfig, DRIVERS} from "angular2-locker";
-import {ToastyModule, ToastOptions} from "ng2-toasty";
 
 // App is our top level component
 import { AppComponent } from './app.component';
@@ -36,6 +36,7 @@ import {AuthGuard} from "./components/services/auth-guard.service";
 import {ModuleModule} from "./module/index";
 import {AppConstants} from "./app.constants";
 import {CustomToastyService} from "./components/services/custom-toasty.service";
+import {UserService} from "./components/services/user.service";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -80,6 +81,7 @@ const lockerConfig = new LockerConfig('mm-system', DRIVERS.SESSION, '-');
     AppConstants,
     ToastOptions,
     CustomToastyService,
+    UserService,
   ]
 })
 export class AppModule {

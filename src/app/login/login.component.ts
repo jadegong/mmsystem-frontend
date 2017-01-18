@@ -9,6 +9,7 @@ import {ToastOptions} from "ng2-toasty";
 import {AuthenticationService} from "../components/services/authentication.service";
 import { AppConstants } from '../app.constants';
 import {CustomToastyService} from "../components/services/custom-toasty.service";
+import {UserService} from "../components/services/user.service";
 
 @Component({
   selector: 'login',  // <login></login>
@@ -35,18 +36,35 @@ export class LoginComponent implements OnInit {
     private locker: Locker,
     private appConstants: AppConstants,
     private customToastyService: CustomToastyService,
+    private userService: UserService,
   ) {
     this.EMAIL_PATTERN = '^' + appConstants.pattern.email + '$';
   }
 
   public login() {
     console.log('Login UserData: ', this.userData);
-    this.auth.fill = this.userData;
-    this.locker.set('user', this.userData);
-    this.locker.set('token', this.userData.email);
-    // let toastOptions: ToastOptions = {title: 'Login info'};
-    // this.customToastyService.show('default', toastOptions);
-    this.router.navigate(['/module/dashboard']);
+    let _this = this;
+    let toastOptions: ToastOptions = {title: '登录信息'};
+    let toastType = 'info';
+    this.userService.login(this.userData)
+      .finally(() => {
+        _this.customToastyService.show(toastType, toastOptions);
+        if (toastType !== 'error') {
+          _this.router.navigate(['/module/dashboard']);
+        }
+      })
+      .subscribe(
+        (data) => {
+          _this.auth.fill = data;
+          _this.locker.set('user', data.user);
+          _this.locker.set('token', data.token);
+          toastOptions.msg = '登录成功，跳转至首页！';
+        },
+        (error) => {
+          toastType = 'error';
+          toastOptions.msg = '登录失败，请稍后再试！';
+        }
+      );
   }
 
   public ngOnInit() {
