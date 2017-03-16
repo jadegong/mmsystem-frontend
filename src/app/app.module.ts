@@ -23,20 +23,25 @@ import {
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 
-// App is our top level component
+// components and directives
 import { AppComponent } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InternalStateType } from './app.service';
 import { LoginComponent } from './login';
 import { RegisterComponent } from './register';
 import { NoContentComponent } from './no-content';
 import { XLargeDirective } from './home/x-large';
+import { HeaderComponent } from './components/header'
+
+// services and resolvers
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { AppState, InternalStateType } from './app.service';
 import {AuthenticationService} from "./components/services/authentication.service";
 import {AuthGuard} from "./components/services/auth-guard.service";
-import {ModuleModule} from "./module/index";
-import {AppConstants} from "./app.constants";
 import {CustomToastyService} from "./components/services/custom-toasty.service";
 import {UserService} from "./components/services/user.service";
+
+// modules and constants
+import {ModuleModule} from "./module/index";
+import {AppConstants} from "./app.constants";
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -62,6 +67,7 @@ const lockerConfig = new LockerConfig('mm-system', DRIVERS.SESSION, '-');
     LoginComponent,
     RegisterComponent,
     NoContentComponent,
+    HeaderComponent,
     XLargeDirective
   ],
   imports: [ // import Angular's module

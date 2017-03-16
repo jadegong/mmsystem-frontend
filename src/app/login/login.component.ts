@@ -46,25 +46,32 @@ export class LoginComponent implements OnInit {
     let _this = this;
     let toastOptions: ToastOptions = {title: '登录信息'};
     let toastType = 'info';
-    this.userService.login(this.userData)
-      .finally(() => {
-        _this.customToastyService.show(toastType, toastOptions);
-        if (toastType !== 'error') {
-          _this.router.navigate(['/module/dashboard']);
-        }
-      })
-      .subscribe(
-        (data) => {
-          _this.auth.fill = data;
-          _this.locker.set('user', data.user);
-          _this.locker.set('token', data.token);
-          toastOptions.msg = '登录成功，跳转至首页！';
-        },
-        (error) => {
-          toastType = 'error';
-          toastOptions.msg = '登录失败，请稍后再试！';
-        }
-      );
+
+    // TODO delete and uncomment
+    _this.locker.set('user', this.userData.email);
+    _this.locker.set('token', this.userData.email);
+    toastOptions.msg = '登录成功，跳转至首页！';
+    _this.customToastyService.show(toastType, toastOptions);
+    _this.router.navigate(['/module/dashboard']);
+    // this.userService.login(this.userData)
+    //   .finally(() => {
+    //     _this.customToastyService.show(toastType, toastOptions);
+    //     if (toastType !== 'error') {
+    //       _this.router.navigate(['/module/dashboard']);
+    //     }
+    //   })
+    //   .subscribe(
+    //     (data) => {
+    //       _this.auth.fill = data;
+    //       _this.locker.set('user', data.user);
+    //       _this.locker.set('token', data.token);
+    //       toastOptions.msg = '登录成功，跳转至首页！';
+    //     },
+    //     (error) => {
+    //       toastType = 'error';
+    //       toastOptions.msg = '登录失败，请稍后再试！';
+    //     }
+    //   );
   }
 
   public ngOnInit() {
