@@ -2,18 +2,16 @@
     <div class="log-reg-container">
         <div class="log-reg-content">
             <h2 class="log-reg-content-title">登录材料管理系统</h2>
-            <el-form ref="loginForm" :rules="loginRules" :model="loginForm" label-width="100px">
+            <el-form ref="loginForm" :rules="loginRules" :model="loginForm" label-width="70px">
                 <el-form-item label="邮箱：" prop="email">
                     <el-input type="email" v-model="loginForm.email"></el-input>
                 </el-form-item>
                 <el-form-item label="密码：" prop="password">
                     <el-input type="password" v-model="loginForm.password"></el-input>
                 </el-form-item>
-                <el-form-item label="确认密码：" prop="confirmPass">
-                    <el-input type="password" v-model="loginForm.confirmPass"></el-input>
-                </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="login('loginForm')">登录</el-button>
+                    <el-button type="text" @click="gotoRegister">去注册</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -45,18 +43,6 @@
         if (value === '') {
           callback(new Error('请输入密码！'));
         } else {
-          if (this.loginForm.confirmPass !== '') {
-            this.$refs.loginForm.validateField('confirmPass');
-          }
-          callback();
-        }
-      };
-      const validateConfirmPass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请再次输入密码！'));
-        } else if (value !== this.loginForm.password) {
-          callback(new Error('两次密码输入不一致！'));
-        } else {
           callback();
         }
       };
@@ -64,7 +50,6 @@
         loginForm: {
           email: '',
           password: '',
-          confirmPass: '',
         },
         loginRules: {
           email: [
@@ -73,9 +58,6 @@
           password: [
             { validator: validatePassword, trigger: 'blur' },
           ],
-          confirmPas: [
-            { validator: validateConfirmPass, trigger: 'blur' },
-          ],
         },
       };
     },
@@ -83,6 +65,7 @@
       login(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
+            // todo login
             this.$notify({
               title: 'Success!',
               message: 'submit!',
@@ -90,11 +73,14 @@
             });
           } else {
             this.$notify.error({
-              title: 'Error!',
-              message: 'Error while submit!',
+              title: '错误!',
+              message: '表单数据不符合要求！',
             });
           }
         });
+      },
+      gotoRegister() {
+        this.$router.push('/register');
       },
     },
   };
