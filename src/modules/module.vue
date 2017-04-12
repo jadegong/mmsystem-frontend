@@ -4,11 +4,13 @@
         <div class="main-content">
             <router-view></router-view>
         </div>
+        <mm-side-nav></mm-side-nav>
     </div>
 </template>
 
 <script>
     import MmHeader from '../components/header';
+    import MmSideNav from '../components/sideNav';
 
     export default {
       name: 'Modules',
@@ -16,7 +18,8 @@
         return {};
       },
       components: {
-        MmHeader, 'mm-header': MmHeader,
+        'mm-header': MmHeader,
+        'mm-side-nav': MmSideNav,
       },
     };
 </script>

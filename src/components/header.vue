@@ -54,6 +54,7 @@
         -moz-box-shadow: 0 2px 2px #000;
         box-shadow: 0 2px 2px #000;
         padding: 0 15px;
+        z-index: 1;
     }
     .main-header .mm-header-icon {
         float: left;
