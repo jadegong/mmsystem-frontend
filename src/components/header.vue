@@ -5,27 +5,28 @@
         </div>
         <div class="mm-header-content">
             <div class="header-content-block">
-                <!--<el-dropdown trigger="click" @command="handleCommand">-->
-                    <!--<span class="el-dropdown-link">-->
-                        <!--<i class="el-icon-settings"></i>-->
-                    <!--</span>-->
-                    <!--<el-dropdown-menu slot="dropdown">-->
-                        <!--<el-dropdown-item command="account">账户详情</el-dropdown-item>-->
-                        <!--<el-dropdown-item command="logout">退出登陆</el-dropdown-item>-->
-                    <!--</el-dropdown-menu>-->
-                <!--</el-dropdown>-->
+                <el-dropdown trigger="click" @command="handleCommand">
+                    <span class="el-dropdown-link">
+                        操作
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item command="account">账户详情</el-dropdown-item>
+                        <el-dropdown-item command="logout">退出登陆</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-//  import ElDropdown from "element-ui/packages/dropdown/src/dropdown";
-//  import ElDropdownItem from "element-ui/packages/dropdown/src/dropdown-item";
-//  import ElDropdownMenu from "element-ui/packages/dropdown/src/dropdown-menu";
+  import ElDropdown from 'element-ui/packages/dropdown/src/dropdown';
+  import ElDropdownItem from 'element-ui/packages/dropdown/src/dropdown-item';
+  import ElDropdownMenu from 'element-ui/packages/dropdown/src/dropdown-menu';
+
   export default {
     name: 'mm-header',
-//    components: { ElDropdownMenu, ElDropdownItem, ElDropdown },
+    components: { ElDropdownMenu, ElDropdownItem, ElDropdown },
     methods: {
       handleCommand(action) {
         switch (action) {
