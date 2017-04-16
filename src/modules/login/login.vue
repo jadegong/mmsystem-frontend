@@ -71,6 +71,7 @@
               message: 'submit!',
               type: 'success',
             });
+            this.$router.push('/module/dashboard');
           } else {
             this.$notify.error({
               title: '错误!',

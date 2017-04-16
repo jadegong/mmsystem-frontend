@@ -6,9 +6,7 @@
         <div class="mm-header-content">
             <div class="header-content-block">
                 <el-dropdown trigger="click" @command="handleCommand">
-                    <span class="el-dropdown-link">
-                        操作
-                    </span>
+                    <span class="el-dropdown-link"><i class="el-icon-setting"></i></span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item command="account">账户详情</el-dropdown-item>
                         <el-dropdown-item command="logout">退出登陆</el-dropdown-item>
@@ -31,7 +29,7 @@
       handleCommand(action) {
         switch (action) {
           case 'account':
-            this.$router.push('/modules/account');
+            this.$router.push('/module/account');
             break;
           case 'logout':
             // todo logout
@@ -51,9 +49,9 @@
         width: 100%;
         left: 0;
         height: 65px;
-        -webkit-box-shadow: 0 2px 2px #000;
-        -moz-box-shadow: 0 2px 2px #000;
-        box-shadow: 0 2px 2px #000;
+        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+        -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
         padding: 0 15px;
         z-index: 1;
     }
@@ -73,8 +71,31 @@
         float: right;
         height: 100%;
     }
-    .main-header .mm-header-content .header-content-block {}
+    .main-header .mm-header-content .header-content-block {
+        width: 40px;
+        height: 100%;
+        border-left: 1px solid #dddddd;
+        transition: all ease-in-out .15s;
+    }
+    .main-header .mm-header-content .header-content-block:hover {
+        cursor: pointer;
+        background: rgba(0, 0, 0, .1);
+    }
+    .main-header .mm-header-content .header-content-block:last-child {
+        border-right: 1px solid #dddddd;
+    }
+    .main-header .mm-header-content .el-dropdown {
+        width: 40px;
+        height: 100%;
+    }
     .main-header .mm-header-content .el-dropdown-link {
         font-size: 20px;
+        display: block;
+        width: 40px;
+        height: 100%;
+    }
+    .main-header .mm-header-content .el-dropdown-link i {
+        display: inline-block;
+        margin: 23px 0 0 10px;
     }
 </style>

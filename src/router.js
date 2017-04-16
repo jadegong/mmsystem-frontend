@@ -32,13 +32,19 @@ export default new Router({
           path: '/module/dashboard',
           name: 'Dashboard',
           component: Dashboard,
+          meta: { requireAuth: true },
         },
         {
           path: '/module/account',
           name: 'Account',
           component: Account,
+          meta: { requireAuth: true },
         },
       ],
+    },
+    {
+      path: '*', // 其他页面跳转至登录
+      redirect: '/',
     },
   ],
 });

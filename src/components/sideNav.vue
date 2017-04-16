@@ -1,6 +1,6 @@
 <template>
     <div class="main-side-nav">
-        <el-menu defaultActive="1" class="mm-el-menu">
+        <el-menu defaultActive="2" class="mm-el-menu" :router="true">
             <!--<el-submenu index="1">-->
                 <!--<template slot="title"><i class="el-icon-message"></i>Dashboard</template>-->
             <!--</el-submenu>-->
