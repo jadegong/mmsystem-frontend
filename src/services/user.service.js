@@ -4,15 +4,15 @@
 import Vue from 'vue';
 
 export default class UserService {
-  info() {
+  static info() {
     return Vue.http.get('/user{/id}');
   }
 
-  login(data) {
-    return Vue.http.post('/user/login');
+  static login(data) {
+    return Vue.http.post('/user/login', data);
   }
 
-  register(data) {
-    return Vue.http.post('/user/register');
+  static register(data) {
+    return Vue.http.post('/user/register', data);
   }
-};
+}
