@@ -11,7 +11,7 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="login('loginForm')">登录</el-button>
-                    <el-button type="text" @click="gotoRegister">去注册</el-button>
+                    <el-button type="text" @click="goToRegister">去注册</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -22,8 +22,11 @@
   import ElForm from 'element-ui/packages/form/src/form';
   import ElFormItem from 'element-ui/packages/form/src/form-item';
   import ElInput from 'element-ui/packages/input/src/input';
+  import { mapActions } from 'vuex';
   import appConstants from '../../app.constants';
   import ElButton from '../../../node_modules/element-ui/packages/button/src/button';
+  import { AUTH_FILL } from '../../store/Auth';
+  import UserService from '../../services/user.service';
 
   export default {
     components: { ElButton, ElInput, ElFormItem, ElForm },
@@ -62,16 +65,21 @@
       };
     },
     methods: {
+      ...mapActions([ AUTH_FILL ]),
       login(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            // todo login
-            this.$notify({
-              title: 'Success!',
-              message: 'submit!',
-              type: 'success',
+            // login
+            UserService.login(this.loginForm).then((response) => {
+              // success action
+              this.AUTH_FILL(response.json());
+              this.$router.push('/module/dashboard');
+            }, () => {
+              this.$notify.error({
+                title: '登录错误!',
+                message: '登录失败，请稍后再试！',
+              });
             });
-            this.$router.push('/module/dashboard');
           } else {
             this.$notify.error({
               title: '错误!',
@@ -80,7 +88,7 @@
           }
         });
       },
-      gotoRegister() {
+      goToRegister() {
         this.$router.push('/register');
       },
     },

@@ -20,7 +20,7 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="register('registerForm')">注册</el-button>
-                    <el-button type="text" @click="gotoLogin">去登录</el-button>
+                    <el-button type="text" @click="goToLogin">去登录</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -34,6 +34,7 @@
   import ElButton from 'element-ui/packages/button/src/button';
   import ElRadio from 'element-ui/packages/radio/src/radio';
   import appConstants from '../../app.constants';
+  import UserService from '../../services/user.service';
 
   export default {
     name: 'Register',
@@ -92,11 +93,15 @@
       register(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            // todo register
-            this.$notify({
-              title: 'Success!',
-              message: 'submit!',
-              type: 'success',
+            // register
+            UserService.register(this.registerForm).then(() => {
+              // success action
+              this.$router.push('/');
+            }, () => {
+              this.$notify.error({
+                title: '注册错误!',
+                message: '注册失败，请稍后再试！',
+              });
             });
           } else {
             this.$notify.error({
@@ -106,7 +111,7 @@
           }
         });
       },
-      gotoLogin() {
+      goToLogin() {
         this.$router.push('/');
       },
     },
