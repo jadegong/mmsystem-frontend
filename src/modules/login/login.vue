@@ -72,6 +72,11 @@
             // login
             UserService.login(this.loginForm).then((response) => {
               // success action
+              this.$notify({
+                title: '登录成功!',
+                message: '登录成功，跳转至系统首页!',
+                type: 'success',
+              });
               this.AUTH_FILL(response.json());
               this.$router.push('/module/dashboard');
             }, () => {

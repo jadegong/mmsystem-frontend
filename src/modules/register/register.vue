@@ -96,6 +96,11 @@
             // register
             UserService.register(this.registerForm).then(() => {
               // success action
+              this.$notify({
+                title: '成功信息!',
+                message: '用户注册信息已发送，请等待管理员通过!',
+                type: 'success',
+              });
               this.$router.push('/');
             }, () => {
               this.$notify.error({
